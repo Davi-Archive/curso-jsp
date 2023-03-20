@@ -11,10 +11,6 @@
 </head>
 <body>
 	<jsp:setProperty property="*" name="calcula" />
-	<h3>Cabecalho</h3>
-	
-	Nome: ${param.nome}
-	<br />
-	Ano: ${param.ano }
+	<h3>Seja bem vindo ao sistema em jsp</h3>
 </body>
 </html>

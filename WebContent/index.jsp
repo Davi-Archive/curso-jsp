@@ -9,18 +9,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:useBean id="calculaBean" class="beans.BeanCurso"
-		type="beans.BeanCurso" scope="page" />
 
-	<h1>Index</h1>
-	<br />
-
-	<form action="cabecalho.jsp" method="post">
-		<input type="text" id="nome" name="nome" />
-		<br />
-		<input type="text" id="ano" name="ano" />
-		<br />
-		<input type="submit" value="testar" />
+	<form action="LoginServlet" method="post" >
+		<input type="text" id="login" name="login" /> 
+		<br /> 
+		<input
+			type="text" id="senha" name="senha" /> <br /> 
+		<input type="submit" value="Logar" />
 	</form>
 
 </body>
