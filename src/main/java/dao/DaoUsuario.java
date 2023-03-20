@@ -48,6 +48,7 @@ public class DaoUsuario {
 
 	while (resultSet.next()) {
 	    BeanCurso beanCurso = new BeanCurso();
+	    beanCurso.setId(resultSet.getLong("id"));
 	    beanCurso.setLogin(resultSet.getString("login"));
 	    beanCurso.setSenha(resultSet.getString("senha"));
 
@@ -65,6 +66,44 @@ public class DaoUsuario {
 		    .prepareStatement(sql);
 	    preparedStatement.execute();
 	} catch (Exception e) {
+	    e.printStackTrace();
+	    try {
+		connection.rollback();
+	    } catch (SQLException e1) {
+		e1.printStackTrace();
+	    }
+	}
+    }
+
+    public BeanCurso consultar(String login) throws SQLException {
+	String sql = "select * from usuario where login='" + login
+		+ "'";
+
+	PreparedStatement preparedStatement = connection
+		.prepareStatement(sql);
+	ResultSet resultSet = preparedStatement.executeQuery();
+	if (resultSet.next()) {
+	    BeanCurso beanCurso = new BeanCurso();
+	    beanCurso.setId(resultSet.getLong("id"));
+	    beanCurso.setLogin(resultSet.getString("login"));
+	    beanCurso.setSenha(resultSet.getString("senha"));
+
+	    return beanCurso;
+	}
+	return null;
+    }
+
+    public void atualizar(BeanCurso usuario) {
+	String sql = "update usuario set login = ?, senha = ? where id = "
+		+ usuario.getId();
+
+	try {
+	    PreparedStatement preparedStatement = connection
+		    .prepareStatement(sql);
+	    preparedStatement.setString(1, usuario.getLogin());
+	    preparedStatement.setString(2, usuario.getSenha());
+	    preparedStatement.executeUpdate();
+	} catch (SQLException e) {
 	    e.printStackTrace();
 	    try {
 		connection.rollback();
