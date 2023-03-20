@@ -13,7 +13,8 @@
 </head>
 <body>
 
-<c:import var="data" url="https://www.google.com.br/" />
+<c:set var="data" scope="page" value="${500*6 }" />
+
 
 <c:out value="${data }" ></c:out>
 
