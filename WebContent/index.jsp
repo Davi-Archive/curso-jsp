@@ -13,10 +13,13 @@
 </head>
 <body>
 
-<c:set var="data" scope="page" value="${500*6 }" />
+<c:catch var="erro">
+	<%= 100/0 %>
+</c:catch>
 
-
-<c:out value="${data }" ></c:out>
+<c:if test="${erro !=null }">
+	${erro.message}
+</c:if>
 
 	<form action="LoginServlet" method="post" >
 		<input type="text" id="login" name="login" /> 
