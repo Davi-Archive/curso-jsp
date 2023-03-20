@@ -13,13 +13,22 @@
 </head>
 <body>
 
-<c:catch var="erro">
-	<%= 100/0 %>
-</c:catch>
+<c:set var="numero" value="${120/2 }" />
 
-<c:if test="${erro !=null }">
-	${erro.message}
-</c:if>
+<c:choose>
+	<c:when test="${numero>50 }">
+		<c:out value="${'Maior que 50'} "></c:out>
+	</c:when>
+	
+	<c:when test="${numero<50 }">
+		<c:out value="${'Menor que 50'} "></c:out>
+	</c:when>
+	
+	<c:otherwise>
+		<c:out value="${'Não encontrou valor correto' }" />
+	</c:otherwise>
+</c:choose>
+
 
 	<form action="LoginServlet" method="post" >
 		<input type="text" id="login" name="login" /> 
