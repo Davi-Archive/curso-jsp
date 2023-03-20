@@ -47,10 +47,10 @@
 	
 	${acesso }
 
-	<c:if test="${numero >50 }">
+	<c:if test="${numero >500 }">
 		<c:redirect url="http://www.google.com.br"></c:redirect>
 	</c:if>
-	<c:if test="${numero <50 }">
+	<c:if test="${numero <-50 }">
 		<c:redirect url="acessoliberado.jsp"></c:redirect>
 	</c:if>
 
