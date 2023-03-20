@@ -29,11 +29,23 @@
 		</c:otherwise>
 	</c:choose>
 
-	<c:forEach var="n" begin="1" end="60">
+	<c:forEach var="n" begin="1" end="20">
 		Item : ${n }
+		<br />
 	</c:forEach>
 
+	<c:forTokens items="Davi-Alex-Jhow" delims="-" var="nome">
+		Nome: <c:out value="${nome }"></c:out>
+		<br />
+	</c:forTokens>
 
+
+	<c:url value="/acessoliberado.jsp" var="acesso">
+		<c:param name="para1" value="111"></c:param>
+		<c:param name="para2" value="222"></c:param>
+	</c:url>
+	
+	${acesso }
 
 
 
