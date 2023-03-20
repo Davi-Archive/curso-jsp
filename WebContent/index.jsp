@@ -9,19 +9,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Bem Vindo!</title>
+<link rel="stylesheet" href="resources/css/index.css">
 </head>
 <body>
 
-	<form action="LoginServlet" method="post">
-		<p>Login</p>
-		<input type="text" id="login" name="login" /> 
-		<br /> 
-		<p>Senha</p>
-		<input type="text" id="senha" name="senha" /> 
-		<br /> 
-		<input type="submit" value="Logar" />
-	</form>
+	<div class="login-page">
+		<div class="form">
+			<form class="login-form" action="LoginServlet" method="post">
+				<input type="text" id="login" name="login" placeholder="Login" /> <input
+					type="text" id="senha" name="senha" placeholder="Senha" />
+					 <button type="submit" >Logar</button>
+			</form>
+		</div>
+	</div>
+
+
 
 </body>
 </html>
