@@ -13,11 +13,8 @@
 	<jsp:setProperty property="*" name="calcula" />
 	<h3>Cabecalho</h3>
 	
-	<jsp:getProperty property="nome" name="calcula" />
+	Nome: ${param.nome}
 	<br />
-	<jsp:getProperty property="ano" name="calcula" />
-	<br />
-	<jsp:getProperty property="sexo" name="calcula" />
-	<br />
+	Ano: ${param.ano }
 </body>
 </html>
