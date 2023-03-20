@@ -14,9 +14,13 @@
 <body>
 
 	<form action="LoginServlet" method="post">
-		<input type="text" id="login" name="login" /> <br /> <input
-			type="text" id="senha" name="senha" /> <br /> <input type="submit"
-			value="Logar" />
+		<p>Login</p>
+		<input type="text" id="login" name="login" /> 
+		<br /> 
+		<p>Senha</p>
+		<input type="text" id="senha" name="senha" /> 
+		<br /> 
+		<input type="submit" value="Logar" />
 	</form>
 
 </body>

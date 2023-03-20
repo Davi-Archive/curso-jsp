@@ -18,13 +18,12 @@ public class SingleConnection {
 	conectar();
     }
 
-   
     private static void conectar() {
 	try {
 	    if (connection == null) {
-	//	Class.forName("org.postgresql.Driver");
-		connection = DriverManager.getConnection(banco,
-			user, password);
+		Class.forName("org.postgresql.Driver");
+		connection = DriverManager.getConnection(banco, user,
+			password);
 		connection.setAutoCommit(false);
 	    }
 	} catch (Exception e) {

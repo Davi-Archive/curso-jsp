@@ -2,10 +2,6 @@ package servlet;
 
 import java.io.IOException;
 
-
-
-import beans.BeanCurso;
-import dao.DaoLogin;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,13 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+import beans.BeanCurso;
+import dao.DaoUsuario;
+
+/**
+ * Servlet implementation class Usuario
+ */
+@WebServlet("/salvarUsuario")
+public class Usuario extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private DaoLogin daoLogin = new DaoLogin();
+    private DaoUsuario daoUsuario = new DaoUsuario();
 
-    public LoginServlet() {
+    public Usuario() {
 	super();
     }
 
@@ -33,27 +35,25 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
 	    HttpServletResponse response)
 	    throws ServletException, IOException {
+	String login = request.getParameter("login");
+	String senha = request.getParameter("senha");
+
+	BeanCurso usuario = new BeanCurso();
+	usuario.setLogin(login);
+	usuario.setSenha(senha);
+
 	try {
-
-	    BeanCurso beanCurso = new BeanCurso();
-
-	    String login = request.getParameter("login");
-	    String senha = request.getParameter("senha");
-
-	    if (daoLogin.validarLogin(login, senha)) {
-		RequestDispatcher dispatcher = request
-			.getRequestDispatcher(
-				"acessoliberado.jsp");
-		dispatcher.forward(request, response);
-	    } else {
-		RequestDispatcher dispatcher = request
-			.getRequestDispatcher(
-				"acessonegado.jsp");
-		dispatcher.forward(request, response);
-	    }
+	    daoUsuario.salvar(usuario);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
+	RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+	try {
+	    request.setAttribute("usuarios",daoUsuario.listar());
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	view.forward(request, response);
     }
 
 }
