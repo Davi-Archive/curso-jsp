@@ -20,12 +20,13 @@ public class DaoUsuario {
 
     public void salvar(BeanCurso usuario) throws Exception {
 	try {
-	    String sql = "insert into usuario(login,senha,nome) values (?, ?, ?)";
+	    String sql = "insert into usuario(login,senha,nome,telefone) values (?, ?, ?, ?)";
 	    PreparedStatement insert = connection
 		    .prepareStatement(sql);
 	    insert.setString(1, usuario.getLogin());
 	    insert.setString(2, usuario.getSenha());
 	    insert.setString(3, usuario.getNome());
+	    insert.setString(4, usuario.getTelefone());
 	    insert.execute();
 	    connection.commit();
 	} catch (Exception e) {
@@ -53,6 +54,7 @@ public class DaoUsuario {
 	    beanCurso.setLogin(resultSet.getString("login"));
 	    beanCurso.setNome(resultSet.getString("nome"));
 	    beanCurso.setSenha(resultSet.getString("senha"));
+	    beanCurso.setTelefone(resultSet.getString("telefone"));
 
 	    listar.add(beanCurso);
 	}
@@ -90,6 +92,7 @@ public class DaoUsuario {
 	    beanCurso.setLogin(resultSet.getString("login"));
 	    beanCurso.setNome(resultSet.getString("nome"));
 	    beanCurso.setSenha(resultSet.getString("senha"));
+	    beanCurso.setTelefone(resultSet.getString("telefone"));
 
 	    return beanCurso;
 	}
@@ -97,7 +100,7 @@ public class DaoUsuario {
     }
 
     public void atualizar(BeanCurso usuario) {
-	String sql = "update usuario set login = ?, senha = ?, nome= ? where id = "
+	String sql = "update usuario set login = ?, senha = ?, nome = ?, telefone = ? where id = "
 		+ usuario.getId();
 
 	try {
@@ -106,6 +109,7 @@ public class DaoUsuario {
 	    preparedStatement.setString(1, usuario.getLogin());
 	    preparedStatement.setString(2, usuario.getSenha());
 	    preparedStatement.setString(3, usuario.getNome());
+	    preparedStatement.setString(4, usuario.getTelefone());
 	    preparedStatement.executeUpdate();
 	} catch (SQLException e) {
 	    e.printStackTrace();
@@ -125,7 +129,7 @@ public class DaoUsuario {
 		.prepareStatement(sql);
 	ResultSet resultSet = preparedStatement.executeQuery();
 	if (resultSet.next()) {
-	    return resultSet.getInt("qtd") <= 0; /* return true  */
+	    return resultSet.getInt("qtd") <= 0; /* return true */
 	}
 	return false;
     }

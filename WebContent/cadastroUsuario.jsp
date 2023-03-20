@@ -31,8 +31,13 @@
 				</tr>
 				<tr>
 					<td>Nome:</td>
-					<td><input type="text" id="senha" name="senha"
+					<td><input type="text" id="nome" name="nome"
 						value="${user.nome }" /></td>
+				</tr>
+				<tr>
+					<td>Telefone:</td>
+					<td><input type="text" id="telefone" name="telefone"
+						value="${user.telefone }" /></td>
 				</tr>
 			</table>
 			<input type="submit" value="salvar" />
@@ -44,6 +49,7 @@
 				<th>Login</th>
 				<th>Senha</th>
 				<th>Nome</th>
+				<th>Telefone</th>
 			</tr>
 			<c:forEach items="${usuarios }" var="user">
 				<tr>
@@ -51,6 +57,7 @@
 					<td style="width: 150px;"><c:out value="${user.login}"></c:out></td>
 					<td style="width: 150px;"><c:out value="${user.senha}"></c:out></td>
 					<td style="width: 150px;"><c:out value="${user.nome}"></c:out></td>
+					<td style="width: 150px;"><c:out value="${user.telefone}"></c:out></td>
 					<td><a href="salvarUsuario?acao=delete&user=${user.login}">Excluir</a></td>
 					<td><a href="salvarUsuario?acao=editar&user=${user.login}">Editar</a></td>
 				</tr>

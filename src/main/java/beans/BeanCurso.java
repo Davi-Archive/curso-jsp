@@ -6,6 +6,7 @@ public class BeanCurso {
     private String login;
     private String nome;
     private String senha;
+    private String telefone;
 
     public boolean validarLoginSenha(String login, String senha) {
 	if (login.equalsIgnoreCase("admin")
@@ -46,6 +47,14 @@ public class BeanCurso {
 
     public void setNome(String nome) {
 	this.nome = nome;
+    }
+
+    public String getTelefone() {
+	return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+	this.telefone = telefone;
     }
 
 }

@@ -61,12 +61,16 @@ public class Usuario extends HttpServlet {
 	    throws ServletException, IOException {
 	String id = request.getParameter("id");
 	String login = request.getParameter("login");
+	String nome = request.getParameter("nome");
 	String senha = request.getParameter("senha");
+	String telefone = request.getParameter("telefone");
 
 	BeanCurso usuario = new BeanCurso();
 	usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
 	usuario.setLogin(login);
 	usuario.setSenha(senha);
+	usuario.setNome(nome);
+	usuario.setTelefone(telefone);
 
 	try {
 	    if (id == null || id.isEmpty()
