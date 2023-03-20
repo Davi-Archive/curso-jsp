@@ -27,9 +27,20 @@ public class Usuario extends HttpServlet {
 
     protected void doGet(HttpServletRequest request,
 	    HttpServletResponse response)
-	    throws ServletException, IOException {
-	response.getWriter().append("Served at: ")
-		.append(request.getContextPath());
+	    throws ServletException, IOException{
+	String acao = request.getParameter("acao");
+	String user = request.getParameter("user");
+	
+	if(acao.equalsIgnoreCase("delete")) {
+	    daoUsuario.delete(user);
+	    RequestDispatcher view= request.getRequestDispatcher("/cadastroUsuario.jsp");
+	    try {
+		request.setAttribute("usuarios", daoUsuario.listar());
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	    view.forward(request, response);
+	}
     }
 
     protected void doPost(HttpServletRequest request,
@@ -47,9 +58,10 @@ public class Usuario extends HttpServlet {
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
-	RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+	RequestDispatcher view = request
+		.getRequestDispatcher("/cadastroUsuario.jsp");
 	try {
-	    request.setAttribute("usuarios",daoUsuario.listar());
+	    request.setAttribute("usuarios", daoUsuario.listar());
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}

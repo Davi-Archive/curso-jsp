@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,5 +55,22 @@ public class DaoUsuario {
 	}
 
 	return listar;
+    }
+
+    public void delete(String login) {
+	try {
+	    String sql = "delete from usuario where login = '" + login
+		    + "'";
+	    PreparedStatement preparedStatement = connection
+		    .prepareStatement(sql);
+	    preparedStatement.execute();
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    try {
+		connection.rollback();
+	    } catch (SQLException e1) {
+		e1.printStackTrace();
+	    }
+	}
     }
 }
