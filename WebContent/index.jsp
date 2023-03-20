@@ -13,7 +13,9 @@
 </head>
 <body>
 
-<c:out value="${'bem vindo ao JSTL' }"></c:out>
+<c:import var="data" url="https://www.google.com.br/" />
+
+<c:out value="${data }" ></c:out>
 
 	<form action="LoginServlet" method="post" >
 		<input type="text" id="login" name="login" /> 
