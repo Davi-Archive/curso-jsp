@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ page errorPage="receber-nome.jsp"%>
-	<%=100 / 0%>
+
+	<h1>Index</h1>
+	<jsp:forward page="receber-nome.jsp">
+		<jsp:param name="paramforward" value="curso de jsp site java" />
+	</jsp:forward>
 </body>
 </html>
