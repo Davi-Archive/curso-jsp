@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -51,7 +52,7 @@ public class Usuario extends HttpServlet {
 		view.forward(request, response);
 	    } catch (Exception e) {
 		e.printStackTrace();
-	    } 
+	    }
 	}
     }
 
@@ -67,14 +68,31 @@ public class Usuario extends HttpServlet {
 	usuario.setLogin(login);
 	usuario.setSenha(senha);
 
-	if (id == null || id.isEmpty()) {
-	    try {
-		daoUsuario.salvar(usuario);
-	    } catch (Exception e) {
-		e.printStackTrace();
+	try {
+	    if (id == null || id.isEmpty()
+		    && !daoUsuario.validarLogin(login)) {
+		request.setAttribute("msg",
+			"Usuário ja existe com o mesmo login.");
 	    }
-	} else {
-	    daoUsuario.atualizar(usuario);
+
+	    if (id == null || id.isEmpty()
+		    && daoUsuario.validarLogin(login)) {
+
+		try {
+		    daoUsuario.salvar(usuario);
+		    request.setAttribute("msg",
+			    "Usuário criado com sucesso.");
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+
+	    } else if (id != null && !id.isEmpty()) {
+		daoUsuario.atualizar(usuario);
+		request.setAttribute("msg",
+			"Usuário atualizado com sucesso.");
+	    }
+	} catch (SQLException e) {
+	    e.printStackTrace();
 	}
 
 	RequestDispatcher view = request

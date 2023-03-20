@@ -7,12 +7,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Acesso Permitido</title>
+<link rel="stylesheet" href="resources/css/index.css">
 </head>
 <body>
+	<section class="login-page">
 	<jsp:setProperty property="*" name="calcula" />
 	<h3>Seja bem vindo ao sistema em jsp</h3>
 	
+	</section>
 	
 	<a href="cadastroUsuario.jsp">Cadastro de usuários</a>
 </body>

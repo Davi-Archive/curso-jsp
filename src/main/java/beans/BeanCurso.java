@@ -4,6 +4,7 @@ public class BeanCurso {
 
     private Long id;
     private String login;
+    private String nome;
     private String senha;
 
     public boolean validarLoginSenha(String login, String senha) {
@@ -37,6 +38,14 @@ public class BeanCurso {
 
     public void setSenha(String senha) {
 	this.senha = senha;
+    }
+
+    public String getNome() {
+	return nome;
+    }
+
+    public void setNome(String nome) {
+	this.nome = nome;
     }
 
 }

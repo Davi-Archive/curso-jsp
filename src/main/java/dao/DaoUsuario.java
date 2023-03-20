@@ -20,11 +20,12 @@ public class DaoUsuario {
 
     public void salvar(BeanCurso usuario) throws Exception {
 	try {
-	    String sql = "insert into usuario(login,senha) values (?, ?)";
+	    String sql = "insert into usuario(login,senha,nome) values (?, ?, ?)";
 	    PreparedStatement insert = connection
 		    .prepareStatement(sql);
 	    insert.setString(1, usuario.getLogin());
 	    insert.setString(2, usuario.getSenha());
+	    insert.setString(3, usuario.getNome());
 	    insert.execute();
 	    connection.commit();
 	} catch (Exception e) {
@@ -50,6 +51,7 @@ public class DaoUsuario {
 	    BeanCurso beanCurso = new BeanCurso();
 	    beanCurso.setId(resultSet.getLong("id"));
 	    beanCurso.setLogin(resultSet.getString("login"));
+	    beanCurso.setNome(resultSet.getString("nome"));
 	    beanCurso.setSenha(resultSet.getString("senha"));
 
 	    listar.add(beanCurso);
@@ -86,6 +88,7 @@ public class DaoUsuario {
 	    BeanCurso beanCurso = new BeanCurso();
 	    beanCurso.setId(resultSet.getLong("id"));
 	    beanCurso.setLogin(resultSet.getString("login"));
+	    beanCurso.setNome(resultSet.getString("nome"));
 	    beanCurso.setSenha(resultSet.getString("senha"));
 
 	    return beanCurso;
@@ -94,7 +97,7 @@ public class DaoUsuario {
     }
 
     public void atualizar(BeanCurso usuario) {
-	String sql = "update usuario set login = ?, senha = ? where id = "
+	String sql = "update usuario set login = ?, senha = ?, nome= ? where id = "
 		+ usuario.getId();
 
 	try {
@@ -102,6 +105,7 @@ public class DaoUsuario {
 		    .prepareStatement(sql);
 	    preparedStatement.setString(1, usuario.getLogin());
 	    preparedStatement.setString(2, usuario.getSenha());
+	    preparedStatement.setString(3, usuario.getNome());
 	    preparedStatement.executeUpdate();
 	} catch (SQLException e) {
 	    e.printStackTrace();
@@ -111,5 +115,18 @@ public class DaoUsuario {
 		e1.printStackTrace();
 	    }
 	}
+    }
+
+    public boolean validarLogin(String login) throws SQLException {
+	String sql = "select count(1) as qtd from usuario where login='"
+		+ login + "'";
+
+	PreparedStatement preparedStatement = connection
+		.prepareStatement(sql);
+	ResultSet resultSet = preparedStatement.executeQuery();
+	if (resultSet.next()) {
+	    return resultSet.getInt("qtd") <= 0; /* return true  */
+	}
+	return false;
     }
 }
