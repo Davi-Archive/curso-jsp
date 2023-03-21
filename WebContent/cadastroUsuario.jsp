@@ -7,22 +7,23 @@
 <meta charset="UTF-8">
 <title>Cadastro de usuário</title>
 <link rel="stylesheet" href="resources/css/cadastro.css">
+<link rel="icon" type="image/x-icon" href="resources/image/java.png">
 </head>
 <body>
 	<section class="login-page">
 		<h3 style="color: red">${msg}</h3>
-		<form action="salvarUsuario" method="post">
+		<form action="salvarUsuario" method="post" id="formUserCadastro">
 			<table style="border: 3px solid gray; background-color: white">
 				<tr>
 					<td colspan="2">
 						<h1>Cadastro de usuário</h1>
 					</td>
 				</tr>
-					<tr>
-						<td class="fields-data">Código:</td>
-						<td><input type="text" id="id" name="id" value="${user.id }"
-							readonly /></td>
-					</tr>
+				<tr>
+					<td class="fields-data">Código:</td>
+					<td><input type="text" id="id" name="id" value="${user.id }"
+						readonly /></td>
+				</tr>
 				<tr>
 					<td class="fields-data">Login:</td>
 					<td><input type="text" id="login" name="login"
@@ -44,8 +45,10 @@
 						value="${user.telefone }" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><button class="button-3" type="submit">Salva
-							Usuário</button></td>
+					<td colspan="2">
+						<button class="button-3" type="submit">Salva Usuário</button>
+						<button class="button-3" onclick="document.getElementById('formUserCadastro').action = 'salvarUsuario?acao=reset'">Cancelar</button>
+					</td>
 				</tr>
 			</table>
 
@@ -69,11 +72,11 @@
 					<td style="width: 150px;"><c:out value="${user.senha}"></c:out></td>
 					<td style="width: 150px;"><c:out value="${user.nome}"></c:out></td>
 					<td style="width: 150px;"><c:out value="${user.telefone}"></c:out></td>
-					<td><a href="salvarUsuario?acao=editar&user=${user.login}">
-							<img src="resources/image/editar.png" alt="Editar" width="45px" />
+					<td><a href="salvarUsuario?acao=editar&user=${user.id}"> <img
+							src="resources/image/editar.png" alt="Editar" width="45px" />
 					</a></td>
-					<td><a href="salvarUsuario?acao=delete&user=${user.login}">
-							<img src="resources/image/excluir.png" alt="Excluir" width="45px" />
+					<td><a href="salvarUsuario?acao=delete&user=${user.id}"> <img
+							src="resources/image/excluir.png" alt="Excluir" width="45px" />
 					</a></td>
 				</tr>
 			</c:forEach>

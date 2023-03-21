@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Acesso Permitido</title>
 <link rel="stylesheet" href="resources/css/acesso-liberado.css">
+<link rel="icon" type="image/x-icon" href="resources/image/java.png">
 </head>
 <body>
 

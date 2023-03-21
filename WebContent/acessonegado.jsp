@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Acesso Negado</title>
+<link rel="icon" type="image/x-icon" href="resources/image/java.png">
 </head>
 <body>
 	<h2>Acesso negado ao sistema para seu usuário</h2>

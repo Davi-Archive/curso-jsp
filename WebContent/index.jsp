@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <title>Bem Vindo!</title>
 <link rel="stylesheet" href="resources/css/index.css">
+<link rel="icon" type="image/x-icon" href="resources/image/java.png">
 </head>
 <body>
 

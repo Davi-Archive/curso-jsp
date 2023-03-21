@@ -62,9 +62,9 @@ public class DaoUsuario {
 	return listar;
     }
 
-    public void delete(String login) {
+    public void delete(String userId) {
 	try {
-	    String sql = "delete from usuario where login = '" + login
+	    String sql = "delete from usuario where id = '" + userId
 		    + "'";
 	    PreparedStatement preparedStatement = connection
 		    .prepareStatement(sql);
@@ -79,8 +79,8 @@ public class DaoUsuario {
 	}
     }
 
-    public BeanCurso consultar(String login) throws SQLException {
-	String sql = "select * from usuario where login='" + login
+    public BeanCurso consultar(String userId) throws SQLException {
+	String sql = "select * from usuario where id ='" + userId
 		+ "'";
 
 	PreparedStatement preparedStatement = connection
