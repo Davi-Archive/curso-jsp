@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import beans.BeanCurso;
 import dao.DaoUsuario;
 
-/**
- * Servlet implementation class Usuario
- */
 @WebServlet("/salvarUsuario")
 public class Usuario extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -95,28 +92,33 @@ public class Usuario extends HttpServlet {
 	    usuario.setTelefone(telefone);
 
 	    try {
-		if (id == null || id.isEmpty()
+		if (usuario.getLogin().length() < 6) {
+		    request.setAttribute("msg",
+			    "Senha menor do que 6 caracteres.");
+		} else if (id == null || id.isEmpty()
 			&& !daoUsuario.validarLogin(login)) {
 		    request.setAttribute("msg",
 			    "Usuário ja existe com o mesmo login.");
-		}
+		} else {
 
-		if (id == null || id.isEmpty()
-			&& daoUsuario.validarLogin(login)) {
+		    if (id == null || id.isEmpty()
+			    && daoUsuario.validarLogin(login)) {
 
-		    try {
-			daoUsuario.salvar(usuario);
+			try {
+			    daoUsuario.salvar(usuario);
+			    request.setAttribute("msg",
+				    "Usuário criado com sucesso.");
+			} catch (Exception e) {
+			    e.printStackTrace();
+			}
+
+		    } else if (id != null && !id.isEmpty()) {
+			daoUsuario.atualizar(usuario);
 			request.setAttribute("msg",
-				"Usuário criado com sucesso.");
-		    } catch (Exception e) {
-			e.printStackTrace();
+				"Usuário atualizado com sucesso.");
 		    }
-
-		} else if (id != null && !id.isEmpty()) {
-		    daoUsuario.atualizar(usuario);
-		    request.setAttribute("msg",
-			    "Usuário atualizado com sucesso.");
 		}
+
 	    } catch (SQLException e) {
 		e.printStackTrace();
 	    }

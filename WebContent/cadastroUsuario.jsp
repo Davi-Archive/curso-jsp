@@ -11,7 +11,9 @@
 </head>
 <body>
 	<section class="login-page">
-		<h3 style="color: red">${msg}</h3>
+		<center>
+			<h3 style="color: red">${msg}</h3>
+		</center>
 		<form action="salvarUsuario" method="post" id="formUserCadastro">
 			<table style="border: 3px solid gray; background-color: white">
 				<tr>
@@ -47,7 +49,8 @@
 				<tr>
 					<td colspan="2">
 						<button class="button-3" type="submit">Salva Usuário</button>
-						<button class="button-3" onclick="document.getElementById('formUserCadastro').action = 'salvarUsuario?acao=reset'">Cancelar</button>
+						<button class="button-3"
+							onclick="document.getElementById('formUserCadastro').action = 'salvarUsuario?acao=reset'">Cancelar</button>
 					</td>
 				</tr>
 			</table>
