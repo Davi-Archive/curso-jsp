@@ -6,42 +6,53 @@
 <head>
 <meta charset="UTF-8">
 <title>Cadastro de usuário</title>
-<link rel="stylesheet" href="resources/css/index.css">
+<link rel="stylesheet" href="resources/css/cadastro.css">
 </head>
 <body>
 	<section class="login-page">
-		<h1>Cadastro de usuário</h1>
 		<h3 style="color: red">${msg}</h3>
 		<form action="salvarUsuario" method="post">
 			<table style="border: 3px solid gray; background-color: white">
 				<tr>
-					<td>Código:</td>
-					<td><input type="text" id="id" name="id" value="${user.id }"
-						readonly /></td>
+					<td colspan="2">
+						<h1>Cadastro de usuário</h1>
+					</td>
 				</tr>
+				<c:if test="${user.id != null }">
+					<tr>
+						<td class="fields-data">Código:</td>
+						<td><input type="text" id="id" name="id" value="${user.id }"
+							readonly /></td>
+					</tr>
+				</c:if>
 				<tr>
-					<td>Login:</td>
+					<td class="fields-data">Login:</td>
 					<td><input type="text" id="login" name="login"
 						value="${user.login }" /></td>
 				</tr>
 				<tr>
-					<td>Senha:</td>
+					<td class="fields-data">Senha:</td>
 					<td><input type="text" id="senha" name="senha"
 						value="${user.senha }" /></td>
 				</tr>
 				<tr>
-					<td>Nome:</td>
+					<td class="fields-data">Nome:</td>
 					<td><input type="text" id="nome" name="nome"
 						value="${user.nome }" /></td>
 				</tr>
 				<tr>
-					<td>Telefone:</td>
+					<td class="fields-data">Telefone:</td>
 					<td><input type="text" id="telefone" name="telefone"
 						value="${user.telefone }" /></td>
 				</tr>
+				<tr>
+					<td colspan="2"><button class="button-3" type="submit">Salva
+							Usuário</button></td>
+				</tr>
 			</table>
-			<input type="submit" value="salvar" />
+
 		</form>
+		<br />
 
 		<table style="border: 3px solid gray; background-color: white">
 			<tr>
@@ -50,6 +61,8 @@
 				<th>Senha</th>
 				<th>Nome</th>
 				<th>Telefone</th>
+				<th>Editar</th>
+				<th>Excluir</th>
 			</tr>
 			<c:forEach items="${usuarios }" var="user">
 				<tr>
@@ -58,8 +71,12 @@
 					<td style="width: 150px;"><c:out value="${user.senha}"></c:out></td>
 					<td style="width: 150px;"><c:out value="${user.nome}"></c:out></td>
 					<td style="width: 150px;"><c:out value="${user.telefone}"></c:out></td>
-					<td><a href="salvarUsuario?acao=delete&user=${user.login}">Excluir</a></td>
-					<td><a href="salvarUsuario?acao=editar&user=${user.login}">Editar</a></td>
+					<td><a href="salvarUsuario?acao=editar&user=${user.login}">
+							<img src="resources/image/editar.png" alt="Editar" width="45px" />
+					</a></td>
+					<td><a href="salvarUsuario?acao=delete&user=${user.login}">
+							<img src="resources/image/excluir.png" alt="Excluir" width="45px" />
+					</a></td>
 				</tr>
 			</c:forEach>
 		</table>
