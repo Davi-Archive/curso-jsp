@@ -18,13 +18,11 @@
 						<h1>Cadastro de usuário</h1>
 					</td>
 				</tr>
-				<c:if test="${user.id != null }">
 					<tr>
 						<td class="fields-data">Código:</td>
 						<td><input type="text" id="id" name="id" value="${user.id }"
 							readonly /></td>
 					</tr>
-				</c:if>
 				<tr>
 					<td class="fields-data">Login:</td>
 					<td><input type="text" id="login" name="login"

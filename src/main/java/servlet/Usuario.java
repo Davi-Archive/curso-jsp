@@ -53,6 +53,15 @@ public class Usuario extends HttpServlet {
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
+	} else if (acao.equalsIgnoreCase("listartodos")) {
+	    RequestDispatcher view = request
+		    .getRequestDispatcher("/cadastroUsuario.jsp");
+	    try {
+		request.setAttribute("usuarios", daoUsuario.listar());
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	    view.forward(request, response);
 	}
     }
 
